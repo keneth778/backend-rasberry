@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Control de Semáforo Rápido</title>
+    <link rel="stylesheet" href="index.css">
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <script src="app.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Control de Semáforo Rápido</h1>
+        
+        <div class="modo-actual">
+            Modo actual: <span id="modoTexto">Automático</span>
+        </div>
+        
+        <div class="semaforo">
+            <div id="rojo" class="luz"></div>
+            <div id="amarillo" class="luz"></div>
+            <div id="verde" class="luz"></div>
+        </div>
+        
+        <div class="manual">
+            <h3>Control Manual</h3>
+            <button onclick="controlarLuz('rojo')">Rojo</button>
+            <button onclick="controlarLuz('amarillo')">Amarillo</button>
+            <button onclick="controlarLuz('verde')">Verde</button>
+        </div>
+        
+        <div class="modos">
+            <h3>Modos Predefinidos</h3>
+            <button onclick="setModo('detener')">Detener</button>
+            <button onclick="setModo('precaucion')">Precaución</button>
+            <button onclick="setModo('avanzar')">Avanzar</button>
+            <button onclick="setModo('apagar')">Apagar Todo</button>
+            <button onclick="setModo('automatico')">Modo Automático</button>
+        </div>
+    </div>
+</body>
+</html>
