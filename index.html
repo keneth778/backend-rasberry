@@ -1,24 +1,57 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Control de Semáforo Rápido</title>
+    <title>Control de Semáforo Inteligente</title>
     <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="clima.css">
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
     <script src="app.js" defer></script>
 </head>
 <body>
     <div class="container">
-        <h1>Control de Semáforo Rápido</h1>
+        <h1>Control de Semáforo Inteligente</h1>
         
         <div class="modo-actual">
             Modo actual: <span id="modoTexto">Automático</span>
         </div>
         
-        <div class="semaforo">
-            <div id="rojo" class="luz"></div>
-            <div id="amarillo" class="luz"></div>
-            <div id="verde" class="luz"></div>
+        <div class="contenido-principal">
+            <div class="semaforo-container">
+                <div class="semaforo">
+                    <div id="rojo" class="luz"></div>
+                    <div id="amarillo" class="luz"></div>
+                    <div id="verde" class="luz"></div>
+                </div>
+            </div>
+            
+            <div class="clima-container">
+                <div class="modulo-clima">
+                    <div class="datos-clima">
+                        <div class="sensor-item temperatura" id="temperaturaContainer">
+                            <div class="sensor-label">Temperatura</div>
+                            <div class="sensor-value" id="temperatura">--°C</div>
+                        </div>
+                        
+                        <div class="sensor-item humedad">
+                            <div class="sensor-label">Humedad</div>
+                            <div class="sensor-value" id="humedad">--%</div>
+                        </div>
+                    </div>
+                    
+                    <div class="ventilador-container">
+                        <div class="ventilador-label">Ventilador</div>
+                        <div class="ventilador" id="ventilador">
+                            <div class="aspas">
+                                <div class="aspa"></div>
+                                <div class="aspa"></div>
+                                <div class="aspa"></div>
+                            </div>
+                        </div>
+                        <div class="estado-ventilador inactivo" id="estadoVentilador">Inactivo</div>
+                    </div>
+                </div>
+            </div>
         </div>
         
         <div class="manual">

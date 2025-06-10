@@ -1,0 +1,168 @@
+/* Estilos para el módulo de clima */
+.modulo-clima {
+    background-color: #2c3e50;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    color: white;
+    width: 250px;
+    min-height: 350px;
+}
+
+.datos-clima {
+    margin-bottom: 30px;
+}
+
+.sensor-item {
+    background-color: #34495e;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 0;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.sensor-item:hover {
+    background-color: #3d566e;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.sensor-label {
+    font-size: 16px;
+    color: #bdc3c7;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.sensor-value {
+    font-size: 32px;
+    font-weight: bold;
+    color: #ecf0f1;
+    transition: all 0.3s ease;
+}
+
+.temperatura .sensor-value {
+    color: #e74c3c;
+}
+
+.humedad .sensor-value {
+    color: #3498db;
+}
+
+.ventilador-container {
+    text-align: center;
+    margin-top: 25px;
+}
+
+.ventilador-label {
+    font-size: 18px;
+    color: #bdc3c7;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.ventilador {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    position: relative;
+    background-color: #34495e;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+}
+
+.aspas {
+    width: 70px;
+    height: 70px;
+    position: relative;
+    transition: transform 0.5s ease;
+}
+
+.aspa {
+    position: absolute;
+    width: 35px;
+    height: 10px;
+    background-color: #95a5a6;
+    border-radius: 5px;
+    top: 50%;
+    left: 50%;
+    transform-origin: 0 50%;
+}
+
+.aspa:nth-child(1) {
+    transform: translate(-50%, -50%) rotate(0deg);
+}
+
+.aspa:nth-child(2) {
+    transform: translate(-50%, -50%) rotate(120deg);
+}
+
+.aspa:nth-child(3) {
+    transform: translate(-50%, -50%) rotate(240deg);
+}
+
+/* Animación del ventilador */
+.ventilador.girando .aspas {
+    animation: girar 0.8s linear infinite;
+}
+
+@keyframes girar {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.estado-ventilador {
+    margin-top: 15px;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.estado-ventilador.activo {
+    color: #2ecc71;
+}
+
+.estado-ventilador.inactivo {
+    color: #e74c3c;
+}
+
+/* Estilos para alerta de temperatura alta */
+.temperatura.alerta {
+    animation: pulseBackground 1.5s infinite alternate;
+}
+
+@keyframes pulseBackground {
+    from {
+        background-color: #34495e;
+    }
+    to {
+        background-color: #4a2c2c;
+    }
+}
+
+.temperatura.alerta .sensor-value {
+    animation: pulse 1s infinite alternate;
+}
+
+@keyframes pulse {
+    from {
+        transform: scale(1);
+        text-shadow: 0 0 5px rgba(231, 76, 60, 0.5);
+    }
+    to {
+        transform: scale(1.05);
+        text-shadow: 0 0 15px rgba(231, 76, 60, 0.8);
+    }
+}

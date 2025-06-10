@@ -16,6 +16,7 @@ const database = firebase.database();
 // Referencias a los nodos de Firebase
 const semaforoRef = database.ref('semaforo');
 const controlRef = database.ref('control');
+const sensorRef = database.ref('sensor');
 
 // Actualizar estado visual del semáforo
 function actualizarEstado(estado) {
@@ -24,10 +25,50 @@ function actualizarEstado(estado) {
     document.getElementById('verde').classList.toggle('activo', estado.verde === "ON");
 }
 
+// Actualizar datos del sensor en la interfaz
+function actualizarDatosSensor(data) {
+    if (data) {
+        const tempContainer = document.getElementById('temperaturaContainer');
+        const tempElement = document.getElementById('temperatura');
+        const humElement = document.getElementById('humedad');
+        
+        // Mostrar temperatura y humedad
+        const temp = data.temperatura !== undefined ? Math.round(data.temperatura * 10) / 10 : '--';
+        const hum = data.humedad !== undefined ? Math.round(data.humedad * 10) / 10 : '--';
+        
+        tempElement.textContent = `${temp}°C`;
+        humElement.textContent = `${hum}%`;
+        
+        // Controlar ventilador animado y estilo de temperatura
+        const ventilador = document.getElementById('ventilador');
+        const estadoVentilador = document.getElementById('estadoVentilador');
+        
+        if (temp >= 30) {
+            tempContainer.classList.add('alerta');
+            ventilador.classList.add('girando');
+            estadoVentilador.textContent = "Activado";
+            estadoVentilador.classList.remove('inactivo');
+            estadoVentilador.classList.add('activo');
+        } else {
+            tempContainer.classList.remove('alerta');
+            ventilador.classList.remove('girando');
+            estadoVentilador.textContent = "Inactivo";
+            estadoVentilador.classList.remove('activo');
+            estadoVentilador.classList.add('inactivo');
+        }
+    }
+}
+
 // Escuchar cambios en el estado del semáforo
 semaforoRef.on('value', (snapshot) => {
     const data = snapshot.val() || {rojo:"OFF", amarillo:"OFF", verde:"OFF"};
     actualizarEstado(data);
+});
+
+// Escuchar cambios en los datos del sensor
+sensorRef.on('value', (snapshot) => {
+    const data = snapshot.val();
+    actualizarDatosSensor(data);
 });
 
 // Control manual de luces (respuesta rápida)
